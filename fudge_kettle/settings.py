@@ -22,8 +22,11 @@ SECRET_KEY = 'django-insecure-gdm@cyis2a$(4wx(%sh*tk#(+exm&n#jhmxzrq!4d$mv+zcb!1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    "fudge-kettle-app.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 # Application definition
 
