@@ -1,23 +1,41 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8" />
   <title>{% block title %}The Fudge Kettle{% endblock %}</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/theme.css' %}" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 </head>
 <body>
+
   <header class="site-header">
-    <img src="{% static 'img/logo.png' %}" class="logo" alt="Logo">
-    <nav>
-  <a href="{% url 'home' %}">Home</a>
-  <a href="{% url 'product-list-html' %}">Shop</a>
-  <a href="{% url 'cart' %}">Cart</a>
-</nav>
+    <div class="container">
+      <a href="/" class="logo">
+        <img src="{% static 'img/logo.png' %}" alt="The Fudge Kettle" />
+      </a>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/shop/">Shop</a></li>
+          <li><a href="/cart/">Cart</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
-  <main>{% block content %}{% endblock %}</main>
-  <footer class="site-footer">© 2025 The Fudge Kettle</footer>
+
+  {% block hero %}{% endblock %}
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 The Fudge Kettle. All rights reserved.</p>
+      <p>8100 E. US Hwy 36, Avon, IN | (317) 268-6216</p>
+    </div>
+  </footer>
+
 </body>
 </html>
 
