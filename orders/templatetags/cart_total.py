@@ -2,10 +2,10 @@ from django import template
 
 register = template.Library()
 
-@register.filter(name='get_cart_total')
-def get_cart_total(cart):
+@register.filter
+def get_cart_total(cart_items):
     """
-    Accepts a list of dicts: [{'product':…, 'quantity':…, 'total':…}, …]
-    Returns the sum of each item['total'].
+    Sums up the `total` from each item dict.
     """
-    return sum(item.get('total', 0) for item in cart)
+    return sum(item["total"] for item in cart_items)
+

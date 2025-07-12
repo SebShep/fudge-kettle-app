@@ -1,12 +1,29 @@
-﻿# orders/views.py
+# orders/views.py
 
 from django.shortcuts import render, get_object_or_404, redirect
 from rest_framework import generics
-
 from .models      import Product, Order, OrderItem
 from .serializers import ProductSerializer, OrderSerializer
 from .forms       import OrderCreateForm
+from django.shortcuts import render
 
+def cart_view(request):
+    # Example: pulling a session‐based cart. Adapt to your actual logic.
+    session_cart = request.session.get("cart", {})  
+    # Convert your session data into a list of line‐items:
+    cart_items = []
+    for prod_id, qty in session_cart.items():
+        product = Product.objects.get(pk=prod_id)
+        total = product.price * qty
+        cart_items.append({
+            "product": product,
+            "quantity": qty,
+            "total": total,
+        })
+
+    return render(request, "cart.html", {
+        "cart": cart_items
+    })
 # --------------- DRF API Views ---------------
 
 class ProductListView(generics.ListAPIView):
